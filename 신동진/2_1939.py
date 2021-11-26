@@ -1,8 +1,7 @@
-# 1	2748	하	동적 프로그래밍	피보나치 수 2
 #큐 사용
 from sys import stdin
 from collections import deque
-input = stdin.readline\
+input = stdin.readline
 
 n = int(input())
 cnt=0
@@ -14,8 +13,8 @@ while cnt<=n:
     elif cnt == 1:
         q.append(1)
     else:
-        q.append(q[0]+q[1])
+        q.append(q[0]%15746+q[1]%15746)
         q.popleft()
     cnt+=1
 
-print(q[-1])
+print(sum(q)%15746)
