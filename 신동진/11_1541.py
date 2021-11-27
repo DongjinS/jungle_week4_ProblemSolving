@@ -5,6 +5,7 @@
 출력
 첫째 줄에 정답을 출력한다
 '''
+#아이디어 - 더하기 먼저 빼기 나중에 -> 먼저 다 더해주면 큰 수를 뺄 수 있다 == 작아진다.
 from sys import stdin
 input = stdin.readline
 
