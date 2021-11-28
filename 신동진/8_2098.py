@@ -45,11 +45,10 @@ def FindPath(city_map, cur_start, visited):
             #visited|1<<city , |(=or) 연산을 통해서 visited 에 방문할(탐색할) city를 포함시킨다.
             #거리를 비교할때 현재 도시에서 탐색할 도시의 거리를 탐색의 반환 값에 더해준다
             tmp_min = min(tmp_min, FindPath(city_map, city, visited|1<<city) + city_map[cur_start][city])
-    
     dp_table[cur_start][visited] = tmp_min
     return tmp_min
 
 #처음 부른 함수의 리턴 = 마지막으로 반환되는 tmp_min 값이 시작점에서부터 모든 도시를 돌아 시작점으로 돌아오는 최소값
-print(FindPath(city_map,0,visited))
-# print(*dp_table, sep="\n")
-# print()
+FindPath(city_map,0,visited)
+print(dp_table[0][1])
+
