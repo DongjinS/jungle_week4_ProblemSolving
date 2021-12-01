@@ -8,7 +8,6 @@
 첫째 줄에 모든 집을 칠하는 비용의 최솟값을 출력한다.
 '''
 from sys import stdin, setrecursionlimit
-from functools import cache
 input = stdin.readline
 setrecursionlimit(10**8)
 
@@ -19,7 +18,7 @@ for i in range(N):
 
 dp = [[None] * 3 for _ in range(N)]
 
-
+# @cache
 def FindMin(cur_house,color):
     if color < 0 or color > 2:
         return float('inf')
@@ -29,13 +28,13 @@ def FindMin(cur_house,color):
 
     if dp[cur_house][color] != None:
         return dp[cur_house][color]
-    
+
     for cur_color in range(3):
-        #미스테리..
-        candidate = [FindMin(cur_house+1,cur_color-1),FindMin(cur_house+1,cur_color+1), FindMin(cur_house+1,cur_color+2), FindMin(cur_house+1,cur_color-2)]
-        print(*dp, sep="\n")
         dp[cur_house][cur_color] = min(FindMin(cur_house+1,cur_color-1),FindMin(cur_house+1,cur_color+1), FindMin(cur_house+1,cur_color+2), FindMin(cur_house+1,cur_color-2)) + color_price[cur_house][cur_color]
-    return dp[cur_house][cur_color]
+    
+    #이상하게 나오던 거 - 이유 dp[cur_house][cur_color](cur_color:반복문의 끝)을 리턴 해줘서 dp[cur_house][color]로 바꿔주니 해결
+    # return dp[cur_house][cur_color]
+    return dp[cur_house][color]
 
 FindMin(0,0)
 print(*dp, sep="\n")
